@@ -1,5 +1,9 @@
 name: SmartDeploy Pages - Build & Publish
 
+permissions:
+  contents: write
+  pages: write
+
 on:
   push:
     branches: [ "main" ]
@@ -8,10 +12,10 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
+      - name: Checkout repo (with token)
         uses: actions/checkout@v4
         with:
-          persist-credentials: false
+          persist-credentials: true
 
       - name: Prepare build directory
         run: |
